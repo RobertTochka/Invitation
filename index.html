@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#eeeae4">
+  <title>Даня & Алина — 26 · 09 · 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Ballet&family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="envelope-screen" id="envelopeScreen">
+    <button class="envelope" id="openInvitation" type="button" aria-label="Открыть приглашение">
+      <span class="envelope-content">
+        <span class="envelope-title">Вы приглашены<br>на свадьбу</span>
+        <span class="envelope-seal">НАЖМИТЕ</span>
+        <span class="envelope-text"><strong>Вы не просто так получили<br>это приглашение!</strong><br>В особенный для
+          нас день<br>мы очень хотим, чтобы вы были рядом!</span>
+      </span>
+    </button>
+    <div class="envelope-hint">Нажмите на конверт</div>
+  </section>
+
+  <main class="invitation" id="invitation" aria-hidden="true">
+    <div class="paper">
+      <div class="content">
+        <header class="hero">
+          <img class="hero-initials" src="assets/initials.png" alt="Д А">
+          <div class="hero-names">ДАНЯ &amp; АЛИНА</div>
+          <div class="hero-date">26 · 09 · 2026</div>
+        </header>
+
+        <section class="intro">
+          <h1 class="script-title">Дорогие гости!</h1>
+          <p class="body-text">Мы очень хотим сделать этот день особенным,<br>поэтому приглашаем вас разделить с нами
+            торжество,<br>посвященное дню нашей свадьбы!</p>
+        </section>
+
+        <section class="calendar-section">
+          <h2 class="calendar-title">26 сентября 2026</h2>
+          <div class="calendar" id="calendar"></div>
+        </section>
+
+        <section class="events">
+          <article class="event">
+            <img class="event-icon" src="assets/rings1.png" alt="">
+            <div class="event-label">ЗАГС</div>
+            <div class="event-time">15:00</div>
+            <div class="event-address">Воронеж, ул. 25 Января, 4</div>
+            <a class="map-button" target="_blank" rel="noopener"
+              href="https://yandex.ru/maps/?text=Воронеж%2C%20ул.%2025%20Января%2C%204">ПОКАЗАТЬ НА КАРТЕ
+              <span>⌾</span></a>
+          </article>
+          <div class="events-divider"></div>
+          <article class="event">
+            <img class="event-icon glass" src="assets/glass.png" alt="">
+            <div class="event-label">СБОР В РЕСТОРАНЕ</div>
+            <div class="event-time">18:00</div>
+            <div class="event-address">Ресторан «Фестиваль»<br>Воронеж, ул. Кривошеина, 13</div>
+            <a class="map-button" target="_blank" rel="noopener"
+              href="https://yandex.ru/maps/?text=Воронеж%2C%20ул.%20Кривошеина%2C%2013">ПОКАЗАТЬ НА КАРТЕ
+              <span>⌾</span></a>
+          </article>
+        </section>
+
+        <section class="dress">
+          <img src="assets/dress.png" alt="">
+          <div>
+            <h3>ДРЕСС-КОД</h3>
+            <p>Никаких рамок, только красивые образы.<br />Просьба от невесты для девушек: не надевать платья белого
+              цвета, белый цвет уже занят 😊, а яркие цвета и шорты - в заслуженном отпуске!</p>
+          </div>
+          <img src="assets/bowtie.png" alt="">
+        </section>
+
+        <section class="wishes">
+          <h3>ПОЖЕЛАНИЯ</h3>
+          <p>Ваша улыбка и хорошее настроение – главное<br>для нас в этот день!<br>Если вы захотите сделать нам ценный и
+            нужный подарок,<br>мы будем очень благодарны за подарок в виде конверта,<br>чтобы ваши и наши руки были
+            свободны для объятий.</p>
+          <div class="heart">♡</div>
+        </section>
+
+        <section class="countdown">
+          <h2>Мы скажем да через...</h2>
+          <div class="counter" id="countdown">
+            <div class="counter-item"><strong id="days">00</strong><span>ДНЕЙ</span></div><i>:</i>
+            <div class="counter-item"><strong id="hours">00</strong><span>ЧАСОВ</span></div><i>:</i>
+            <div class="counter-item"><strong id="minutes">00</strong><span>МИНУТ</span></div><i>:</i>
+            <div class="counter-item"><strong id="seconds">00</strong><span>СЕКУНД</span></div>
+          </div>
+          <img class="final-rings" src="assets/rings2.png" alt="Обручальные кольца">
+        </section>
+
+        <footer class="footer">
+          <p>Если вы заблудились по дороге или у вас возникли вопросы,<br>не стесняйтесь обращаться к нам!!!</p>
+          <div class="signature">Ваши Даня и Алина ♡</div>
+        </footer>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>

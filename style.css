@@ -1,0 +1,790 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #ece8e2;
+  color: #6d5138;
+}
+
+body {
+  font-family: Montserrat, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+body.invitation-open {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+button,
+a {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --brown: #70533a;
+  --line: rgba(112, 83, 58, 0.25);
+  --paper: #f7f2ea;
+}
+
+/* ---------- ENVELOPE ---------- */
+.envelope-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  background: #eeeae4;
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s ease,
+    transform 0.7s ease;
+}
+
+.envelope-screen.open {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.025);
+  pointer-events: none;
+}
+
+.envelope {
+  position: relative;
+  width: 1500px;
+  height: 1000px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  filter: drop-shadow(0 22px 30px rgba(64, 45, 28, 0.16));
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease;
+  background: url("assets/letter_desktop.png") center center/100% 100% no-repeat;
+  border-radius: 16px;
+}
+
+.envelope:hover {
+  transform: translateY(-6px);
+  filter: drop-shadow(0 30px 36px rgba(64, 45, 28, 0.19));
+}
+
+.envelope:focus-visible {
+  outline: 2px solid var(--brown);
+  outline-offset: 9px;
+}
+
+.envelope-content {
+  position: absolute;
+  inset: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.envelope-title {
+  position: absolute;
+  top: 11.8%;
+  left: 0;
+  right: 0;
+  font:
+    500 clamp(29px, 4.5vw, 60px)/1.2 Ballet,
+    cursive;
+  color: #75563c;
+}
+
+.envelope-seal {
+  position: absolute;
+  top: 76%;
+  left: 50.2%;
+  width: 130px;
+  height: 130px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font:
+    500 16px Montserrat,
+    sans-serif;
+  color: #fff1e4;
+}
+
+.envelope-text {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 40%;
+  font:
+    500 20px/1.6 Montserrat,
+    sans-serif;
+  color: #5f4938;
+}
+
+.envelope-text strong {
+  font-weight: 600;
+}
+
+.envelope-hint {
+  position: fixed;
+  bottom: 5vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font:
+    500 9px Montserrat,
+    sans-serif;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(96, 71, 47, 0.48);
+  pointer-events: none;
+}
+
+/* ---------- INVITATION ---------- */
+.invitation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s ease 0.15s,
+    transform 0.8s ease 0.15s,
+    visibility 0s linear 0.95s;
+  pointer-events: none;
+}
+
+.invitation.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition:
+    opacity 0.8s ease 0.15s,
+    transform 0.8s ease 0.15s;
+}
+
+/* Desktop: увеличиваем саму открытую страницу и сохраняем пропорции исходного фона. */
+.paper {
+  position: relative;
+  width: min(1200px, calc(100vw - 48px));
+  height: 2920px;
+  overflow: hidden;
+  background: var(--paper) url("assets/bg_desktop.png") center center/100% 100%
+    no-repeat;
+  box-shadow: 0 0 50px rgba(67, 47, 29, 0.1);
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 600px 350px 500px 330px 270px 250px 434px 210px;
+  padding: 0 9%;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.hero-initials {
+  width: min(540px, 60%);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.hero-names {
+  margin-top: -8px;
+  font:
+    500 clamp(26px, 2.1vw, 34px)/1 Cormorant Garamond,
+    serif;
+  letter-spacing: 0.2em;
+}
+
+.hero-date {
+  margin-top: 17px;
+  font:
+    500 clamp(23px, 2vw, 32px)/1 Cormorant Garamond,
+    serif;
+  letter-spacing: 0.24em;
+}
+
+.intro {
+  text-align: center;
+  margin-top: 160px;
+}
+
+.script-title {
+  margin: 0 0 15px;
+  font:
+    400 clamp(36px, 3.3vw, 46px)/1 Ballet,
+    cursive;
+  color: #75563c;
+}
+
+.body-text {
+  margin: 0;
+  color: #695743;
+  font:
+    450 clamp(12px, 1vw, 18px)/1.7 Montserrat,
+    sans-serif;
+}
+
+.calendar-section {
+  text-align: center;
+  margin: auto 0;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.calendar-title {
+  margin: 0 0 50px;
+  font:
+    550 clamp(27px, 2.3vw, 36px)/1 Cormorant Garamond,
+    serif;
+  letter-spacing: 0.17em;
+}
+
+.calendar {
+  width: min(610px, 82%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 16px;
+  text-align: center;
+  font:
+    500 clamp(12px, 1vw, 18px)/1.6 Montserrat,
+    sans-serif;
+  color: #735d48;
+}
+
+.calendar .weekday {
+  font-size: 1.2em;
+  font-weight: 450;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.calendar .day {
+  position: relative;
+  min-height: 21px;
+  display: grid;
+  place-items: center;
+}
+
+.calendar .day.wedding {
+  font-weight: 550;
+  font-size: 22px;
+  font-style: italic;
+  z-index: 1;
+}
+
+.calendar .day.wedding:before {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border: 2px solid #b58b61;
+  border-radius: 50%;
+  transform: rotate(-8deg);
+  z-index: -1;
+}
+
+.events {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: center;
+  text-align: center;
+  margin: 0 0 18px;
+  min-height: 300px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.events-divider {
+  width: 1px;
+  height: 70%;
+  background: #b68a60;
+}
+
+.event {
+  position: relative;
+  padding: 20px 5% 18px 20%;
+}
+
+.event-icon {
+  position: absolute;
+  width: 180px;
+  object-fit: contain;
+  left: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.event-icon.glass {
+  width: 180px;
+}
+
+.event-label {
+  font:
+    550 clamp(12px, 1vw, 18px)/1 Montserrat,
+    sans-serif;
+  letter-spacing: 0.08em;
+  margin-bottom: 7px;
+}
+
+.event-time {
+  font:
+    500 clamp(34px, 3.1vw, 44px)/0.9 Cormorant Garamond,
+    serif;
+  letter-spacing: 0.05em;
+}
+
+.event-address {
+  margin: 14px 0 16px;
+  color: #735f4d;
+  font:
+    450 clamp(12px, 0.85vw, 14px)/1.45 Montserrat,
+    sans-serif;
+}
+
+.map-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 15px;
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  text-decoration: none;
+  color: #574534;
+  font:
+    500 12px/1 Montserrat,
+    sans-serif;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.map-button:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.map-button span {
+  font-size: 15px;
+}
+
+.dress {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 19% 62% 19%;
+  align-items: center;
+  text-align: center;
+  min-height: 245px;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 0 5%;
+  margin-bottom: 18px;
+}
+
+.dress img {
+  width: 180px;
+  object-fit: contain;
+  justify-self: center;
+}
+
+.dress h3,
+.wishes h3 {
+  margin: 0 0 16px;
+  font:
+    600 clamp(12px, 1vw, 20px)/1 Cormorant Garamond,
+    serif;
+  letter-spacing: 0.08em;
+}
+
+.dress p,
+.wishes p {
+  margin: 0;
+  color: #695743;
+  font:
+    500 clamp(10px, 1vw, 14px)/1.55 Montserrat,
+    sans-serif;
+}
+
+.wishes {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  text-align: center;
+  padding: 28px 4% 0;
+  min-height: 230px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 20px;
+}
+
+.wishes .heart {
+  margin-top: 10px;
+  font:
+    29px/1 Cormorant Garamond,
+    serif;
+}
+
+.countdown {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.countdown h2 {
+  margin: 0 0 28px;
+  font:
+    400 clamp(34px, 3.3vw, 44px)/1 Ballet,
+    cursive;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.counter > i {
+  font:
+    500 27px/1 Cormorant Garamond,
+    serif;
+  font-style: normal;
+}
+
+.counter-item {
+  width: 92px;
+  height: 76px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.counter-item strong {
+  font:
+    500 38px/0.85 Cormorant Garamond,
+    serif;
+}
+
+.counter-item span {
+  margin-top: 14px;
+  font:
+    400 10px/1 Montserrat,
+    sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.final-rings {
+  display: block;
+  width: 340px;
+  margin: 30px auto 0;
+}
+
+.footer {
+  text-align: center;
+  padding-top: 14px;
+}
+
+.footer p {
+  margin: 0 0 20px;
+  color: #695743;
+  font:
+    400 clamp(10px, 0.82vw, 16px)/1.6 Montserrat,
+    sans-serif;
+}
+
+.signature {
+  margin-top: 34px;
+  font:
+    400 clamp(28px, 2.9vw, 37px)/1 Ballet,
+    cursive;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 700px) {
+  body.invitation-open {
+    overflow-y: auto;
+  }
+
+  .paper {
+    width: 100vw;
+    height: 1900px;
+    box-shadow: none;
+    background: var(--paper) url("assets/bg_mobile.png") center center/100% 100%
+      no-repeat;
+  }
+
+  .content {
+    grid-template-rows: 280px 190px 300px 340px 190px 190px 290px 100px;
+    padding: 0 7.5%;
+  }
+
+  .hero {
+    padding-top: 20px;
+  }
+
+  .hero-initials {
+    width: 70%;
+    max-width: 310px;
+  }
+
+  .hero-names {
+    margin-top: -4px;
+    font-size: 20px;
+  }
+
+  .hero-date {
+    margin-top: 13px;
+    font-size: 18px;
+  }
+
+  .intro {
+    margin-top: 80px;
+  }
+
+  .script-title,
+  .countdown h2 {
+    font-size: 31px;
+  }
+
+  .body-text {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .calendar-section {
+    margin: auto 0;
+  }
+
+  .calendar-title {
+    margin-bottom: 27px;
+    font-size: 24px;
+  }
+
+  .calendar {
+    row-gap: 10px;
+    width: 94%;
+    font-size: 11px;
+  }
+
+  .calendar .day.wedding:before {
+    width: 28px;
+    height: 28px;
+  }
+
+  .calendar .weekday {
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .calendar .day {
+    position: relative;
+    min-height: 21px;
+    display: grid;
+    place-items: center;
+  }
+
+  .calendar .day.wedding {
+    font-weight: 500;
+    font-size: 14px;
+    z-index: 1;
+  }
+
+  .events {
+    grid-template-columns: 1fr;
+    min-height: 320px;
+    margin-bottom: 15px;
+    padding: 8px 0;
+  }
+
+  .events-divider {
+    width: 70%;
+    height: 1px;
+    margin: auto;
+  }
+
+  .event {
+    min-height: 140px;
+    padding: 15px 4% 0 25%;
+  }
+
+  .event-icon {
+    width: 86px;
+    height: 68px;
+    left: 5%;
+  }
+
+  .event-icon.glass {
+    width: 86px;
+  }
+
+  .event-label {
+    font-size: 11px;
+  }
+
+  .event-time {
+    font-size: 31px;
+  }
+
+  .event-address {
+    margin: 8px 0 10px;
+    font-size: 9px;
+  }
+
+  .map-button {
+    min-height: 32px;
+    font-size: 7px;
+    padding: 0 12px;
+    gap: 5px;
+    border: 1px solid var(--line);
+  }
+
+  .map-button span {
+    font-size: 12px;
+  }
+
+  .dress {
+    grid-template-columns: 20% 60% 20%;
+    min-height: 175px;
+    margin-bottom: 15px;
+    padding: 0 2%;
+  }
+
+  .dress img {
+    width: 92px;
+    height: 76px;
+  }
+
+  .dress h3,
+  .wishes h3 {
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .dress p,
+  .wishes p {
+    font-size: 9px;
+    line-height: 1.5;
+  }
+
+  .wishes {
+    min-height: 170px;
+    padding: 22px 4% 0;
+  }
+
+  .wishes .heart {
+    margin-top: 15px;
+    font-size: 26px;
+  }
+
+  .countdown {
+    padding-top: 34px;
+  }
+
+  .counter {
+    gap: 5px;
+  }
+
+  .counter > i {
+    font-size: 18px;
+  }
+
+  .counter-item {
+    width: 64px;
+    height: 60px;
+  }
+
+  .counter-item strong {
+    font-size: 25px;
+  }
+
+  .counter-item span {
+    margin-top: 8px;
+    font-size: 6px;
+  }
+
+  .final-rings {
+    width: min(220px, 65%);
+    margin: 10px auto 0;
+  }
+
+  .footer {
+    padding-top: 4px;
+  }
+
+  .footer p {
+    font-size: 10px;
+  }
+
+  .signature {
+    margin-top: 15px;
+    font-size: 27px;
+  }
+
+  .envelope {
+    width: min(430px, 82vw);
+    height: 500px;
+    background: url("assets/letter_mobile.png") center center/100% 100%
+      no-repeat;
+  }
+
+  .envelope-title {
+    font:
+      400 clamp(29px, 4.5vw, 45px)/1.12 Ballet,
+      cursive;
+  }
+
+  .envelope-text {
+    top: auto;
+    bottom: 13.2%;
+    font:
+      400 11px/1.6 Montserrat,
+      sans-serif;
+  }
+
+  .envelope-text strong {
+    font-weight: 500;
+  }
+
+  .envelope-seal {
+    top: 48.5%;
+    left: 50%;
+    width: 54px;
+    height: 54px;
+    font:
+      500 8px Montserrat,
+      sans-serif;
+  }
+}
+
+@media (min-width: 701px) and (max-height: 1000px) {
+  .paper {
+    margin: 30px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
