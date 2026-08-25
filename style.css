@@ -755,12 +755,12 @@ a {
     top: auto;
     bottom: 13.2%;
     font:
-      400 11px/1.6 Great Vibes,
+      400 16px/1.6 Great Vibes,
       sans-serif;
   }
 
-  .envelope-text strong {
-    font-weight: 500;
+  .envelope-text .strong {
+    font-weight: 600;
   }
 
   .envelope-seal {
