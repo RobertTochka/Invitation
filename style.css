@@ -122,12 +122,12 @@ a {
   right: 7%;
   top: 40%;
   font:
-    500 20px/1.6 Montserrat,
+    500 30px/1.2 Great Vibes,
     sans-serif;
   color: #5f4938;
 }
 
-.envelope-text strong {
+.envelope-text .strong {
   font-weight: 600;
 }
 
